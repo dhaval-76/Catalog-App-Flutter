@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:flutter_app1/utils/routes.dart';
+import 'package:flutter_app1/widgets/home_widgets/catalog_header.dart';
+import 'package:flutter_app1/widgets/home_widgets/catalog_list.dart';
 import 'dart:convert';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_app1/models/catalog.dart';
-import 'package:flutter_app1/widgets/drawer.dart';
-import 'package:flutter_app1/widgets/item.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
   @override
   _HomeState createState() => _HomeState();
 }
@@ -34,23 +35,30 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Catalog App"),
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
+        backgroundColor: context.theme.buttonColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: CatalogModel.items.isNotEmpty
-            ? ListView.builder(
-                itemCount: CatalogModel.items.length,
-                itemBuilder: (context, index) => ItemWidget(
-                  item: CatalogModel.items[index],
-                ),
-              )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
+      body: SafeArea(
+        child: Container(
+          padding: Vx.mH32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CatalogHeader(),
+              if (CatalogModel.items.isNotEmpty)
+                CatalogList().pOnly(top: 16).expand()
+              else
+                CircularProgressIndicator().centered().py16().expand(),
+            ],
+          ),
+        ),
       ),
-      drawer: MyDrawer(),
     );
   }
 }
