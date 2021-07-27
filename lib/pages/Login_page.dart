@@ -2,12 +2,12 @@ import "package:flutter/material.dart";
 import 'package:flutter_app1/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Login extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changeButton = false;
 

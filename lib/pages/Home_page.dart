@@ -8,12 +8,12 @@ import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_app1/models/catalog.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
